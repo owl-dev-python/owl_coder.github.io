@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel — Owl_Dev</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <nav class="admin-nav">
+        <h3>🦉 Owl_Dev Admin</h3>
+        <button onclick="logout()">Logout</button>
+    </nav>
+
+    <div class="upload-section">
+        <h2>Upload New Item</h2>
+        <form id="uploadForm">
+            <input type="text" id="itemTitle" placeholder="Item Title" required>
+            <textarea id="itemDesc" placeholder="Description" required></textarea>
+            <input type="file" id="itemFile" accept="image/*,video/*" required>
+            <button type="submit">Upload Item</button>
+        </form>
+
+        <div id="preview" class="preview"></div>
+    </div>
+
+    <div class="existing-items">
+        <h3>Existing Items</h3>
+        <div id="itemsContainer"></div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/admin.js"></script>
+</body>
+</html>

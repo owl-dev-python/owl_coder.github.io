@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio — Owl_Dev</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="portfolio.html" class="active">Portfolio</a>
+            <a href="marketplace.html">Marketplace</a>
+            <a href="contact.html">Contact</a>
+            <a href="login.html" class="admin-link">Admin</a>
+        </nav>
+    </header>
+
+    <main class="portfolio-main">
+        <h1>🎮 My Roblox Creations</h1>
+        <p>Here are some of my best games, scripts, and UI designs. Want something like this? <strong>DM me!</strong></p>
+
+        <div class="portfolio-grid" id="portfolioGrid">
+            <!-- Projects will be loaded here via JS -->
+        </div>
+    </main>
+
+    <!-- Comments Section -->
+    <section class="comments-section">
+        <h3>💬 Leave Feedback or Request a Commission</h3>
+        <div class="comment-options">
+            <button id="anonBtn">Comment Anonymously</button>
+            <button id="loginBtn">Login to Comment</button>
+        </div>
+
+        <div id="commentFormAnon" class="comment-form">
+            <input type="text" id="anonName" placeholder="Your Name (Optional)" />
+            <textarea id="anonComment" placeholder="What did you think? Or what do you need?" required></textarea>
+            <button onclick="postAnonComment()">Post Comment</button>
+        </div>
+
+        <div id="commentFormLogin" class="comment-form hidden">
+            <input type="text" id="userName" placeholder="Choose a Username" required />
+            <textarea id="userComment" placeholder="Your comment or request..." required></textarea>
+            <button onclick="postUserComment()">Post as User</button>
+        </div>
+
+        <div id="commentsDisplay" class="comments-display">
+            <!-- Comments appear here -->
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Owl_Dev | Roblox Scripter & UI Designer</p>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/comments.js"></script>
+    <script>
+        // Sample portfolio items (you can later move this to localStorage for admin editing)
+        const projects = [
+            {
+                title: "Skybound Tycoon",
+                description: "A relaxing sky-farming game with custom economy and smooth UI.",
+                image: "https://via.placeholder.com/400x225/6a0dad/ffffff?text=Skybound+Tycoon",
+                tags: ["Scripting", "UI Design", "Economy System"],
+                date: "2025-03-10"
+            },
+            {
+                title: "Neon Combat Arena",
+                description: "Fast-paced PvP with animated menus, SFX, and killstreak rewards.",
+                image: "https://via.placeholder.com/400x225/00bcd4/ffffff?text=Neon+Combat",
+                tags: ["PvP Scripting", "Animations", "UI/UX"],
+                date: "2025-02-18"
+            },
+            {
+                title: "UI Kit: Futuristic HUD",
+                description: "Reusable UI components with glowing effects, perfect for sci-fi games.",
+                image: "https://via.placeholder.com/400x225/ff5722/ffffff?text=Futuristic+HUD",
+                tags: ["UI Kit", "Templates", "Design"],
+                date: "2025-04-01"
+            }
+        ];
+
+        function loadPortfolio() {
+            const container = document.getElementById('portfolioGrid');
+            container.innerHTML = '';
+
+            projects.forEach(project => {
+                const div = document.createElement('div');
+                div.className = 'project-card';
+                div.innerHTML = `
+                    <img src="${project.image}" alt="${project.title}">
+                    <div class="project-info">
+                        <h3>${project.title}</h3>
+                        <p>${project.description}</p>
+                        <div class="tags">
+                            ${project.tags.map(tag => `<span>${tag}</span>`).join('')}
+                        </div>
+                        <small>Released: ${project.date}</small>
+                        <a href="https://discord.com/users/owl_coder" target="_blank" class="btn-contact">
+                            📩 DM to Get This
+                        </a>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // Load on DOM ready
+        document.addEventListener('DOMContentLoaded', function() {
+            loadPortfolio();
+            displayComments(); // from comments.js
+        });
+    </script>
+</body>
+</html>
